@@ -5,8 +5,8 @@ using UnityEngine;
 public class DrawWall : MonoBehaviour
 {
     [SerializeField] GameObject  WallPrefab;
-    [SerializeField] GameObject MainCamera;
     [SerializeField] int MaxSize;
+    [SerializeField] Transform WallPool;
     GameObject m_currentWall;
 
     LineRenderer m_lineRenderer;
@@ -15,7 +15,7 @@ public class DrawWall : MonoBehaviour
     Camera m_camera;
 
     void Start() {
-        m_camera = MainCamera.GetComponent<Camera>();
+        m_camera = Camera.main;
         m_mousePositions = new List<Vector2>();
     }
 
@@ -33,6 +33,7 @@ public class DrawWall : MonoBehaviour
 
     void SpawnWall() {
         m_currentWall = Instantiate(WallPrefab, Vector3.zero, Quaternion.identity);
+        m_currentWall.GetComponent<Transform>().SetParent(WallPool);
 
         m_lineRenderer = m_currentWall.GetComponent<LineRenderer>();
         m_edgeCollider = m_currentWall.GetComponent<EdgeCollider2D>();
