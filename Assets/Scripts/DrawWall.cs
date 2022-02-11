@@ -6,6 +6,7 @@ public class DrawWall : MonoBehaviour
 {
     [SerializeField] GameObject  WallPrefab;
     [SerializeField] GameObject MainCamera;
+    [SerializeField] int MaxSize;
     GameObject m_currentWall;
 
     LineRenderer m_lineRenderer;
@@ -13,13 +14,11 @@ public class DrawWall : MonoBehaviour
     List<Vector2> m_mousePositions;
     Camera m_camera;
 
-    // Start is called before the first frame update
     void Start() {
         m_camera = MainCamera.GetComponent<Camera>();
         m_mousePositions = new List<Vector2>();
     }
 
-    // Update is called once per frame
     void Update() {
         if(Input.GetMouseButtonDown(0))
             SpawnWall();
@@ -49,9 +48,26 @@ public class DrawWall : MonoBehaviour
     }
 
     void UpdateWall(Vector2 newMousePos) {
+        Debug.Log(m_lineRenderer.positionCount);
+
         m_mousePositions.Add(newMousePos);
         m_lineRenderer.positionCount++;
         m_lineRenderer.SetPosition(m_lineRenderer.positionCount - 1, newMousePos);
         m_edgeCollider.points = m_mousePositions.ToArray();
+    
+        if(m_lineRenderer.positionCount >= MaxSize){
+            m_mousePositions.RemoveAt(0);
+            m_edgeCollider.points = m_mousePositions.ToArray();
+            m_lineRenderer.positionCount--;
+            m_lineRenderer.SetPosition(m_lineRenderer.positionCount - 1, newMousePos);
+            
+            //nub unity can't convert vector2 array to vector3 array
+            Vector3[] wtfUnity = new Vector3[m_mousePositions.Count];
+            for(int i = 0; i < m_mousePositions.Count; i++){
+                wtfUnity[i] = m_mousePositions[i];
+            }
+
+            m_lineRenderer.SetPositions(wtfUnity);
+        }
     }
 }

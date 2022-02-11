@@ -51,7 +51,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: df36454d68cd8144a978a54fd90d74dc, type: 2}
+  - {fileID: 2100000, guid: aa91721386dbc434b94ef52fbfd0d9bd, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -83,7 +83,7 @@ LineRenderer:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.15
+        value: 1
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -144,7 +144,7 @@ EdgeCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_EdgeRadius: 0
+  m_EdgeRadius: 0.25
   m_Points:
   - {x: -0.5, y: 0}
   - {x: 5.5, y: 0}
