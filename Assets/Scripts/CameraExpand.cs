@@ -11,14 +11,14 @@ public class CameraExpand : MonoBehaviour
     void Start() {
         m_camera = GetComponent<Camera>();
         m_lastOrthographicSize = (int)m_camera.orthographicSize;
-        //wallExpand.UpdateSize((m_lastOrthographicSize*2-2)*16f/9f,m_lastOrthographicSize*2-2,false);
+        wallExpand.UpdateSize((m_lastOrthographicSize*2-2)*16f/9f,m_lastOrthographicSize*2-2,false);
     }   
 
     void Update() {
         m_camera.orthographicSize += CamGrowth * Time.deltaTime;
         if(m_lastOrthographicSize != (int)m_camera.orthographicSize){
             m_lastOrthographicSize = (int)m_camera.orthographicSize;
-            //wallExpand.UpdateSize((m_lastOrthographicSize*2-2)*16f/9f,m_lastOrthographicSize*2-2);
+            wallExpand.UpdateSize((m_lastOrthographicSize*2-2)*16f/9f,m_lastOrthographicSize*2-2);
         }
     }
 }
