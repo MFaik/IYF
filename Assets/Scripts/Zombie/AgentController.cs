@@ -7,33 +7,43 @@ public class AgentController : MonoBehaviour
 {
     public float Speed = 1f;
 
+    [SerializeField] float ActionTime = 3f; 
+    float m_timer = 0;
+
     Transform m_target;
     Animator m_animator;
-    CapsuleCollider2D m_collider;
+    CircleCollider2D m_collider;
     Rigidbody2D m_rb;
     [SerializeField] List<Transform> m_agents;
 
     // Start is called before the first frame update
     void Start(){
-        m_animator = GetComponent<Animator>();
+        m_animator = GetComponentInChildren<Animator>();
         m_rb = GetComponent<Rigidbody2D>();
-        m_collider = GetComponent<CapsuleCollider2D>();
+        m_collider = GetComponent<CircleCollider2D>();
     }
 
     // Update is called once per frame
     void Update(){
-        if (!CheckPath(m_target)){
+        if(m_timer > 0){
+            m_timer -= Time.deltaTime;
+            return;
+        }
+        m_timer = ActionTime;
+
+        if(m_target == null)
             m_target = ScanForTarget();
-            if(m_target == null) { } //wandering
+
+        if (CheckPath(m_target)){
+            m_animator.SetBool("Stopped", false);
+            m_rb.velocity = ((m_target.position - transform.position).normalized * Speed);
+        } else {
+            m_target = null;
+            //wandering
             m_rb.velocity = Vector2.zero;
 
             m_animator.SetBool("Stopped", true);
         }
-        else{
-            m_animator.SetBool("Stopped", false);
-            m_rb.velocity = ((m_target.position - transform.position).normalized * Speed);
-        }
-            
     }
 
     public void UpdateAgents(List<Transform> t){
@@ -45,7 +55,7 @@ public class AgentController : MonoBehaviour
         List<RaycastHit2D> raycasts = new List<RaycastHit2D>();
         foreach (Transform agent in m_agents){
             RaycastHit2D temp = Physics2D.Raycast(transform.position + (agent.position - transform.position).normalized * m_collider.bounds.size.magnitude, agent.position - transform.position);
- 
+            Debug.DrawRay(transform.position + (agent.position - transform.position).normalized * m_collider.bounds.size.magnitude, agent.position - transform.position,Color.red,1f);
             if(temp && temp.collider.gameObject.CompareTag("Agent"))
                 raycasts.Add(temp);
         }
@@ -62,8 +72,7 @@ public class AgentController : MonoBehaviour
         if(target == null) return false;
 
         RaycastHit2D temp = Physics2D.Raycast(transform.position + (target.position - transform.position).normalized * m_collider.bounds.size.magnitude, target.position - transform.position);
-
-        return temp && temp.collider.CompareTag("Agent");
+        return temp && temp.transform.CompareTag("Agent");
     }
 
 }
