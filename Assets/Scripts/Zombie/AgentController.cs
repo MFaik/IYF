@@ -36,6 +36,7 @@ public class AgentController : MonoBehaviour
 
         if (CheckPath(m_target)){
             m_animator.SetBool("Stopped", false);
+            m_animator.SetTrigger("StopCrying");
             m_rb.velocity = ((m_target.position - transform.position).normalized * Speed);
         } else {
             m_target = null;
@@ -43,6 +44,7 @@ public class AgentController : MonoBehaviour
             m_rb.velocity = Vector2.zero;
 
             m_animator.SetBool("Stopped", true);
+            m_animator.SetTrigger("StartCrying");
         }
     }
 
