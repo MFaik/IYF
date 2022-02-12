@@ -7,6 +7,7 @@ public class DrawWall : MonoBehaviour
     [SerializeField] GameObject  WallPrefab;
     [SerializeField] int MaxSize;
     [SerializeField] Transform WallPool;
+    
     GameObject m_currentWall;
 
     LineRenderer m_lineRenderer;
@@ -33,7 +34,9 @@ public class DrawWall : MonoBehaviour
 
     void SpawnWall() {
         m_currentWall = Instantiate(WallPrefab, Vector3.zero, Quaternion.identity);
-        m_currentWall.GetComponent<Transform>().SetParent(WallPool);
+        
+        if(WallPool)
+            m_currentWall.GetComponent<Transform>().SetParent(WallPool);
 
         m_lineRenderer = m_currentWall.GetComponent<LineRenderer>();
         m_edgeCollider = m_currentWall.GetComponent<EdgeCollider2D>();
@@ -49,8 +52,6 @@ public class DrawWall : MonoBehaviour
     }
 
     void UpdateWall(Vector2 newMousePos) {
-        Debug.Log(m_lineRenderer.positionCount);
-
         m_mousePositions.Add(newMousePos);
         m_lineRenderer.positionCount++;
         m_lineRenderer.SetPosition(m_lineRenderer.positionCount - 1, newMousePos);

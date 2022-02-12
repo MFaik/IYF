@@ -5,34 +5,39 @@ using UnityEngine;
 public class RandomGezenAmogus : MonoBehaviour
 {
     [SerializeField] GameObject[] Walls;
-    [SerializeField] float Speed;
+    [SerializeField] float Acceleration;
     [SerializeField] float StartWaitTime;
     [SerializeField] Transform MoveStop;
     [SerializeField] float MinX, MinY, MaxX, MaxY;
 
+    Rigidbody2D m_rigidbody;
+
     float m_waitTime;
 
     void Start() {
-        m_waitTime = StartWaitTime;
-    
+        m_rigidbody = GetComponent<Rigidbody2D>();
         UpdateMoveStop();
     }
 
     void Update() {
-        transform.position = Vector2.Lerp(transform.position, MoveStop.position, Speed * Time.deltaTime);
+        m_rigidbody.AddForce((MoveStop.position - transform.position) * Acceleration * Time.deltaTime);
 
-        if(Vector2.Distance(transform.position, MoveStop.position) < 0.2f){
+        if (Vector2.Distance(transform.position, MoveStop.position) < 0.3f){
             if(m_waitTime <= 0){
+                ResetVelocity();
                 UpdateMoveStop();
-                m_waitTime = StartWaitTime;
             } else{
                 m_waitTime -= Time.deltaTime;
             }
         }
     }
 
-    void UpdateMoveStop() {
+    public void UpdateMoveStop() {
         MoveStop.position = new Vector2(Random.Range(MinX, MaxX), Random.Range(MinY, MaxY));
-        Debug.Log(MoveStop.position);
+        m_waitTime = StartWaitTime;
+    }
+
+    public void ResetVelocity() {
+        m_rigidbody.velocity = Vector2.zero;
     }
 }
