@@ -6,6 +6,7 @@ public class RandomGezenAmogus : MonoBehaviour
 {
     [SerializeField] GameObject[] Walls;
     [SerializeField] float Acceleration;
+    [SerializeField] float Speed;
     [SerializeField] float StartWaitTime;
     [SerializeField] Transform MoveStop;
     [SerializeField] float MinX, MinY, MaxX, MaxY;
@@ -20,7 +21,8 @@ public class RandomGezenAmogus : MonoBehaviour
     }
 
     void Update() {
-        m_rigidbody.AddForce((MoveStop.position - transform.position) * Acceleration * Time.deltaTime);
+        if (m_rigidbody.velocity.magnitude < Speed)
+            m_rigidbody.AddForce((MoveStop.position - transform.position) * Acceleration * Time.deltaTime);
 
         if (Vector2.Distance(transform.position, MoveStop.position) < 0.3f){
             if(m_waitTime <= 0){

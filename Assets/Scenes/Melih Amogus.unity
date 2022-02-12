@@ -262,7 +262,8 @@ MonoBehaviour:
   - {fileID: 1209066079}
   - {fileID: 1322938640}
   - {fileID: 1724442261}
-  Acceleration: 100
+  Acceleration: 200
+  Speed: 1
   StartWaitTime: 0.05
   MoveStop: {fileID: 1907913734}
   MinX: -7.5
