@@ -263,7 +263,7 @@ MonoBehaviour:
   - {fileID: 1322938640}
   - {fileID: 1724442261}
   Acceleration: 200
-  Speed: 1
+  Speed: 20
   StartWaitTime: 0.05
   MoveStop: {fileID: 1907913734}
   MinX: -7.5
@@ -372,6 +372,10 @@ PrefabInstance:
       propertyPath: WallPool
       value: 
       objectReference: {fileID: 2124743479}
+    - target: {fileID: 9141322882177197738, guid: 998628028181f1947a1958b0284e8b2e, type: 3}
+      propertyPath: MaxPullSize
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 9141322882177197738, guid: 998628028181f1947a1958b0284e8b2e, type: 3}
       propertyPath: WallNavObstacle
       value: 
