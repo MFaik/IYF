@@ -9,6 +9,7 @@ public class AgentController : MonoBehaviour
 
     int m_currentIndex = 0;
     NavMeshAgent m_agent;
+    Animator m_animator;
     [SerializeField] List<Transform> m_agents;
     // Start is called before the first frame update
     void Start(){
@@ -20,6 +21,7 @@ public class AgentController : MonoBehaviour
             Debug.LogError("Could not find position on NavMesh!");
 
         agentParent = GameObject.FindGameObjectWithTag("agentParent").transform;
+        m_animator = GetComponentInChildren<Animator>();
         m_agent = GetComponent<NavMeshAgent>();
         m_agent.updateRotation = false;
         m_agent.updateUpAxis = false;
@@ -28,6 +30,8 @@ public class AgentController : MonoBehaviour
 
     // Update is called once per frame
     void Update(){
+        m_animator.SetBool("Stopped", m_agent.isStopped);
+
         if (Input.GetKeyDown(KeyCode.L))
             UpdateAgents();
 
@@ -40,8 +44,14 @@ public class AgentController : MonoBehaviour
         else{
             m_agent.isStopped = false;
         }
-
+       
         m_agent.SetDestination(m_agents[m_currentIndex].position);
+
+        if (m_agent.remainingDistance < 1 && m_agent.remainingDistance > 0 && m_agent.pathStatus == NavMeshPathStatus.PathComplete)
+        {
+            Time.timeScale = 0;
+            Debug.Log(m_agent.remainingDistance);
+        }
     }
 
     void UpdateAgents(){
@@ -50,4 +60,5 @@ public class AgentController : MonoBehaviour
             if (!ReferenceEquals(t, transform)) m_agents.Add(t);
         m_currentIndex = 0;
     }
+
 }
