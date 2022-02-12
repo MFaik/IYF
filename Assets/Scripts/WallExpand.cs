@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using UnityEngine.AI;
 
 public class WallExpand : MonoBehaviour
 {
@@ -38,17 +39,26 @@ public class WallExpand : MonoBehaviour
 
             Walls[3].DOMoveX(-hx-.5f,.3f);
             DOTween.To(() => m_wallRenderers[3].size, x => m_wallRenderers[3].size = x, new Vector2(1,y), .3f);
+
+            m_wallRenderers[0].GetComponent<NavMeshObstacle>().size = new Vector3(x + 2, 1, 1);
+            m_wallRenderers[1].GetComponent<NavMeshObstacle>().size = new Vector3(x + 2, 1, 1);
+            m_wallRenderers[2].GetComponent<NavMeshObstacle>().size = new Vector3(1, y, 1);
+            m_wallRenderers[3].GetComponent<NavMeshObstacle>().size = new Vector3(1, y, 1);
         } else {
             Walls[0].position = new Vector2(0,hy+.5f);
             m_wallRenderers[0].size = new Vector2(x+2,1);
+            m_wallRenderers[0].GetComponent<NavMeshObstacle>().size = new Vector3(x + 2, 1, 1);
             Walls[1].position = new Vector2(0,-hy-.5f);
             m_wallRenderers[1].size = new Vector2(x+2,1);
+            m_wallRenderers[1].GetComponent<NavMeshObstacle>().size = new Vector3(x + 2, 1, 1);
             Walls[2].position = new Vector2(hx+.5f,0);
             m_wallRenderers[2].size = new Vector2(1,y);
+            m_wallRenderers[2].GetComponent<NavMeshObstacle>().size = new Vector3(1, y, 1);
             Walls[3].position = new Vector2(-hx-.5f,0);
             m_wallRenderers[3].size = new Vector2(1,y);
+            m_wallRenderers[3].GetComponent<NavMeshObstacle>().size = new Vector3(1, y, 1);
         }
-
+        /*
         m_edgeCollider.SetPoints(new List<Vector2>(){
             new Vector2(hx,hy),
             new Vector2(hx,-hy),
@@ -56,6 +66,7 @@ public class WallExpand : MonoBehaviour
             new Vector2(-hx,hy),
             new Vector2(hx,hy),
         });
+        */
     }
 
 }
