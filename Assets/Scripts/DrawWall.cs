@@ -34,7 +34,7 @@ public class DrawWall : MonoBehaviour
 
     void SpawnWall() {
         m_currentWall = Instantiate(WallPrefab, Vector3.zero, Quaternion.identity);
-        
+
         if(WallPool)
             m_currentWall.GetComponent<Transform>().SetParent(WallPool);
 

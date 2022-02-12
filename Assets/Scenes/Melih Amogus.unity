@@ -368,6 +368,10 @@ PrefabInstance:
       propertyPath: WallPool
       value: 
       objectReference: {fileID: 2124743479}
+    - target: {fileID: 9141322882177197738, guid: 998628028181f1947a1958b0284e8b2e, type: 3}
+      propertyPath: WallNavObstacle
+      value: 
+      objectReference: {fileID: 8917882983116100754, guid: 5b57b33d17072dd4981b6fe38f3c28b3, type: 3}
     - target: {fileID: 9141322882177197739, guid: 998628028181f1947a1958b0284e8b2e, type: 3}
       propertyPath: m_RootOrder
       value: 4
