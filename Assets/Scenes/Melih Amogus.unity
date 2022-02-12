@@ -361,6 +361,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 9141322882177197738, guid: 998628028181f1947a1958b0284e8b2e, type: 3}
+      propertyPath: Zort
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 9141322882177197738, guid: 998628028181f1947a1958b0284e8b2e, type: 3}
       propertyPath: MaxSize
       value: 60
       objectReference: {fileID: 0}

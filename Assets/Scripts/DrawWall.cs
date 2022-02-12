@@ -6,6 +6,7 @@ public class DrawWall : MonoBehaviour
 {
     [SerializeField] GameObject  WallPrefab;
     [SerializeField] int MaxSize;
+    [SerializeField] float MaxPullSize;
     [SerializeField] Transform WallPool;
     
     GameObject m_currentWall;
@@ -52,10 +53,15 @@ public class DrawWall : MonoBehaviour
     }
 
     void UpdateWall(Vector2 newMousePos) {
-        m_mousePositions.Add(newMousePos);
-        m_lineRenderer.positionCount++;
-        m_lineRenderer.SetPosition(m_lineRenderer.positionCount - 1, newMousePos);
-        m_edgeCollider.points = m_mousePositions.ToArray();
+        Vector2 fromLast = newMousePos - m_mousePositions[m_mousePositions.Count - 1];
+
+        //cok hizli cekiyorsak line gg
+        if (!(fromLast.x > MaxPullSize || fromLast.x < -MaxPullSize || fromLast.y > MaxPullSize || fromLast.y < -MaxPullSize)){
+            m_mousePositions.Add(newMousePos);
+            m_lineRenderer.positionCount++;
+            m_lineRenderer.SetPosition(m_lineRenderer.positionCount - 1, newMousePos);
+            m_edgeCollider.points = m_mousePositions.ToArray();
+        }
     
         if(m_lineRenderer.positionCount >= MaxSize){
             m_mousePositions.RemoveAt(0);
