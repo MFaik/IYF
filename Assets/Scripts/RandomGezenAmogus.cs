@@ -19,7 +19,7 @@ public class RandomGezenAmogus : MonoBehaviour
     }
 
     void Update() {
-        transform.position = Vector2.MoveTowards(transform.position, MoveStop.position, Speed * Time.deltaTime);
+        transform.position = Vector2.Lerp(transform.position, MoveStop.position, Speed * Time.deltaTime);
 
         if(Vector2.Distance(transform.position, MoveStop.position) < 0.2f){
             if(m_waitTime <= 0){
