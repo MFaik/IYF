@@ -6,6 +6,7 @@ TagManager:
   tags:
   - amogus
   - agentParent
+  - Agent
   layers:
   - Default
   - TransparentFX

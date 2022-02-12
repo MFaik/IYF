@@ -5,60 +5,65 @@ using UnityEngine.AI;
 
 public class AgentController : MonoBehaviour
 {
-    [SerializeField] Transform agentParent;
+    public float Speed = 1f;
 
-    int m_currentIndex = 0;
-    NavMeshAgent m_agent;
+    Transform m_target;
     Animator m_animator;
+    CapsuleCollider2D m_collider;
+    Rigidbody2D m_rb;
     [SerializeField] List<Transform> m_agents;
+
     // Start is called before the first frame update
     void Start(){
-        NavMeshHit closestHit;
-
-        if (NavMesh.SamplePosition(gameObject.transform.position, out closestHit, 500f, NavMesh.AllAreas))
-            gameObject.transform.position = closestHit.position;
-        else
-            Debug.LogError("Could not find position on NavMesh!");
-
-        agentParent = GameObject.FindGameObjectWithTag("agentParent").transform;
-        m_animator = GetComponentInChildren<Animator>();
-        m_agent = GetComponent<NavMeshAgent>();
-        m_agent.updateRotation = false;
-        m_agent.updateUpAxis = false;
-        UpdateAgents();
+        m_animator = GetComponent<Animator>();
+        m_rb = GetComponent<Rigidbody2D>();
+        m_collider = GetComponent<CapsuleCollider2D>();
     }
 
     // Update is called once per frame
     void Update(){
-        m_animator.SetBool("Stopped", m_agent.isStopped);
+        if (!CheckPath(m_target)){
+            m_target = ScanForTarget();
+            if(m_target == null) { } //wandering
+            m_rb.velocity = Vector2.zero;
 
-        if (Input.GetKeyDown(KeyCode.L))
-            UpdateAgents();
-
-        if(m_agent.pathStatus == NavMeshPathStatus.PathPartial){
-            m_currentIndex++;
-            if(m_currentIndex > m_agents.Count - 1)
-               m_currentIndex = 0;
-            m_agent.isStopped = true;
+            m_animator.SetBool("Stopped", true);
         }
         else{
-            m_agent.isStopped = false;
+            m_animator.SetBool("Stopped", false);
+            m_rb.velocity = ((m_target.position - transform.position).normalized * Speed);
         }
-       
-        m_agent.SetDestination(m_agents[m_currentIndex].position);
-
-        if (m_agent.remainingDistance < 1 && m_agent.remainingDistance > 0 && m_agent.pathStatus == NavMeshPathStatus.PathComplete)
-        {
-            Time.timeScale = 0;
-            Debug.Log(m_agent.remainingDistance);
-        }
+            
     }
 
-    void UpdateAgents(){
-        m_agents.Clear();
-        foreach (Transform t in agentParent)
-            if (!ReferenceEquals(t, transform)) m_agents.Add(t);
-        m_currentIndex = 0;
+    public void UpdateAgents(List<Transform> t){
+        foreach (Transform agent in t)
+            if(!ReferenceEquals(agent, transform))  m_agents.Add(agent);
+    }
+
+    Transform ScanForTarget(){
+        List<RaycastHit2D> raycasts = new List<RaycastHit2D>();
+        foreach (Transform agent in m_agents){
+            RaycastHit2D temp = Physics2D.Raycast(transform.position + (agent.position - transform.position).normalized * m_collider.bounds.size.magnitude, agent.position - transform.position);
+ 
+            if(temp && temp.collider.gameObject.CompareTag("Agent"))
+                raycasts.Add(temp);
+        }
+
+        if (raycasts.Count == 0) return null;
+
+        raycasts.Sort(delegate (RaycastHit2D t1, RaycastHit2D t2) { return t1.distance.CompareTo(t2.distance); });
+
+        Debug.Log(transform.name + " Hit " + raycasts[0].collider.transform.name);
+        return raycasts[0].collider.transform;
+    }
+
+    bool CheckPath(Transform target){
+        if(target == null) return false;
+
+        RaycastHit2D temp = Physics2D.Raycast(transform.position + (target.position - transform.position).normalized * m_collider.bounds.size.magnitude, target.position - transform.position);
+
+        return temp && temp.collider.CompareTag("Agent");
     }
 
 }
