@@ -5,19 +5,21 @@ using UnityEngine;
 public class WallManager : MonoBehaviour
 {
     [SerializeField] GameObject grid;
+    [SerializeField] Transform wallParent;
     GameObject m_currentGrid;
     GridManager.GridWall m_currentGridWall;
 
     GameObject[,] grids;
 
     void Start() {
-        grids = new GameObject[17, 11];
+        grids = new GameObject[99, 99];
     }
 
     public void SpawnGrid(Vector2 position) {
         m_currentGridWall = new GridManager.GridWall(position, 1);
         if (grids[m_currentGridWall.Row, m_currentGridWall.Collumn] == null){
             m_currentGrid = Instantiate(grid, Vector3.zero, Quaternion.identity);
+            m_currentGrid.transform.parent = wallParent;
             grids[m_currentGridWall.Row, m_currentGridWall.Collumn] = m_currentGrid;
             Vector2 newPos = Vector2.zero;
             FindPlace(ref newPos);
