@@ -5,11 +5,13 @@ using UnityEngine.AI;
 
 public class AgentController : MonoBehaviour
 {
-    public Transform target;
-    private NavMeshAgent agent;
+    [SerializeField] Transform agentParent;
+
+    int m_currentIndex = 0;
+    NavMeshAgent m_agent;
+    [SerializeField] List<Transform> m_agents;
     // Start is called before the first frame update
-    void Start()
-    {
+    void Start(){
         NavMeshHit closestHit;
 
         if (NavMesh.SamplePosition(gameObject.transform.position, out closestHit, 500f, NavMesh.AllAreas))
@@ -17,18 +19,35 @@ public class AgentController : MonoBehaviour
         else
             Debug.LogError("Could not find position on NavMesh!");
 
-        agent = GetComponent<NavMeshAgent>();
-        agent.updateRotation = false;
-        agent.updateUpAxis = false;
+        agentParent = GameObject.FindGameObjectWithTag("agentParent").transform;
+        m_agent = GetComponent<NavMeshAgent>();
+        m_agent.updateRotation = false;
+        m_agent.updateUpAxis = false;
+        UpdateAgents();
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        agent.SetDestination(target.position);
-        Debug.Log("status " + agent.pathStatus);
-        Debug.Log("stale " + agent.isPathStale);
-        Debug.Log("stopped " + agent.isStopped);
-        Debug.Log("haspath " + agent.hasPath);
+    void Update(){
+        if (Input.GetKeyDown(KeyCode.L))
+            UpdateAgents();
+
+        if(m_agent.pathStatus == NavMeshPathStatus.PathPartial){
+            m_currentIndex++;
+            if(m_currentIndex > m_agents.Count - 1)
+               m_currentIndex = 0;
+            m_agent.isStopped = true;
+        }
+        else{
+            m_agent.isStopped = false;
+        }
+
+        m_agent.SetDestination(m_agents[m_currentIndex].position);
+    }
+
+    void UpdateAgents(){
+        m_agents.Clear();
+        foreach (Transform t in agentParent)
+            if (!ReferenceEquals(t, transform)) m_agents.Add(t);
+        m_currentIndex = 0;
     }
 }
