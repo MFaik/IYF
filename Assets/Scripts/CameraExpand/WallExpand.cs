@@ -7,6 +7,7 @@ using UnityEngine.AI;
 public class WallExpand : MonoBehaviour
 {
     [SerializeField] Transform[] Walls;
+    [SerializeField] AgentManager agentManager;
     SpriteRenderer[] m_wallRenderers;
     EdgeCollider2D m_edgeCollider;
     
@@ -28,17 +29,21 @@ public class WallExpand : MonoBehaviour
         float hx = x/2, hy = y/2;
 
         if(animate){
-            Walls[0].DOMoveY(hy+.5f,.3f);
-            DOTween.To(() => m_wallRenderers[0].size, x => m_wallRenderers[0].size = x, new Vector2(x+2,1), .3f);
+            Sequence DOTweenSequence = DOTween.Sequence();
 
-            Walls[1].DOMoveY(-hy-.5f,.3f);
-            DOTween.To(() => m_wallRenderers[1].size, x => m_wallRenderers[1].size = x, new Vector2(x+2,1), .3f);
+            DOTweenSequence.Join(Walls[0].DOMoveY(hy+.5f,.3f));
+            DOTweenSequence.Join(DOTween.To(() => m_wallRenderers[0].size, x => m_wallRenderers[0].size = x, new Vector2(x+2,1), .3f));
 
-            Walls[2].DOMoveX(hx+.5f,.3f);
-            DOTween.To(() => m_wallRenderers[2].size, x => m_wallRenderers[2].size = x, new Vector2(1,y), .3f);
+            DOTweenSequence.Join(Walls[1].DOMoveY(-hy-.5f,.3f));
+            DOTweenSequence.Join(DOTween.To(() => m_wallRenderers[1].size, x => m_wallRenderers[1].size = x, new Vector2(x+2,1), .3f));
 
-            Walls[3].DOMoveX(-hx-.5f,.3f);
-            DOTween.To(() => m_wallRenderers[3].size, x => m_wallRenderers[3].size = x, new Vector2(1,y), .3f);
+            DOTweenSequence.Join(Walls[2].DOMoveX(hx+.5f,.3f));
+            DOTweenSequence.Join(DOTween.To(() => m_wallRenderers[2].size, x => m_wallRenderers[2].size = x, new Vector2(1,y), .3f));
+
+            DOTweenSequence.Join(Walls[3].DOMoveX(-hx-.5f,.3f));
+            DOTweenSequence.Join(DOTween.To(() => m_wallRenderers[3].size, x => m_wallRenderers[3].size = x, new Vector2(1,y), .3f));
+
+            DOTweenSequence.Play().OnComplete(() => { agentManager.SpawnNewAgent(hx, hy); });
         } else {
             Walls[0].position = new Vector2(0,hy+.5f);
             m_wallRenderers[0].size = new Vector2(x+2,1);

@@ -6,6 +6,7 @@ public class CameraExpand : MonoBehaviour
 {
     [SerializeField] float CamGrowth = 0.1f;
     [SerializeField] WallExpand wallExpand;
+
     Camera m_camera;
     int m_lastOrthographicSize;
     void Start() {
