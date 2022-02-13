@@ -1122,6 +1122,10 @@ PrefabInstance:
       propertyPath: m_moveStop
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 5067739301550430316, guid: 85e3b1d3cc36f5440a445861c56f6048, type: 3}
+      propertyPath: m_SortingLayer
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 85e3b1d3cc36f5440a445861c56f6048, type: 3}
 --- !u!1001 &5067739300024369891

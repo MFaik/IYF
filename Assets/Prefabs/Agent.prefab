@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5067739300973577238}
   - component: {fileID: 5067739300973577239}
   - component: {fileID: 5067739300973577232}
+  - component: {fileID: 682044538631697455}
   m_Layer: 0
   m_Name: Agent
   m_TagString: Agent
@@ -59,6 +60,7 @@ MonoBehaviour:
   MaxX: 7.5
   MaxY: 3.5
   m_moveStop: {fileID: 0}
+  is_wandering: 0
 --- !u!50 &5067739300973577239
 Rigidbody2D:
   serializedVersion: 4
@@ -96,6 +98,20 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.35
+--- !u!114 &682044538631697455
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5067739300973577234}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12dd457fc1c980a45bf70e74e06acb8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SortingOrderBase: 5000
+  Offset: 0
 --- !u!1 &5067739301550430319
 GameObject:
   m_ObjectHideFlags: 0
@@ -165,8 +181,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1820813613
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: -7103071441318442760, guid: ad1238cec86785043b044837aabcd689, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
