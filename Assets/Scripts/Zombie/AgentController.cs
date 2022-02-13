@@ -39,7 +39,7 @@ public class AgentController : MonoBehaviour
     void Update(){
         if (is_wandering){
             if (m_rb.velocity.magnitude < WanderingSpeed)
-                m_rb.AddForce((m_moveStop.transform.position - transform.position) * Acceleration * Time.deltaTime);
+                m_rb.velocity = (m_moveStop.transform.position - transform.position).normalized * Acceleration;
 
             if (Vector2.Distance(transform.position, m_moveStop.transform.position) < 1f){
                 if(m_waitTime <= 0){

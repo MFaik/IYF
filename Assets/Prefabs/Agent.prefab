@@ -51,8 +51,8 @@ MonoBehaviour:
   ActionTime: 3
   m_agents: []
   Walls: []
-  Acceleration: 200
-  WanderingSpeed: 20
+  Acceleration: 2
+  WanderingSpeed: 0.2
   StartWaitTime: 0.05
   MoveStop: {fileID: 2343700016836980775, guid: d51ce1f80914a8b4381f9dbca826234b, type: 3}
   MinX: -7.5
