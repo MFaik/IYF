@@ -30,7 +30,7 @@ public class WallManager : MonoBehaviour
     Wall m_currentGridWall;
     int m_currentWallNumber = 0;
 
-    GameObject[,] m_allGrid;
+    Dictionary<Vector2,GameObject> m_allGrid = new Dictionary<Vector2, GameObject>();
     public List<GameObject> m_currentWalls;
     //Queue<Vector2> m_wallPositions = new Queue<Vector2>();
 
@@ -78,7 +78,6 @@ public class WallManager : MonoBehaviour
 
     void Start() {
         m_camera = Camera.main;
-        m_allGrid = new GameObject[99, 99];
         m_currentWalls = new List<GameObject>();
     }
 
@@ -100,24 +99,24 @@ public class WallManager : MonoBehaviour
             m_currentWalls.RemoveAt(0);
             
             m_currentGridWall = new Wall(position, GridSize);
-            if (m_allGrid[m_currentGridWall.Row, m_currentGridWall.Collumn] == null){
+            if (!m_allGrid.ContainsKey(new Vector2(m_currentGridWall.Row, m_currentGridWall.Collumn))){
                 m_currentGrid = Instantiate(grid, Vector3.zero, Quaternion.identity);
                 m_currentWalls.Add(m_currentGrid);
 
                 m_currentGrid.transform.parent = wallParent;
-                m_allGrid[m_currentGridWall.Row, m_currentGridWall.Collumn] = m_currentGrid;
+                m_allGrid[new Vector2(m_currentGridWall.Row, m_currentGridWall.Collumn)] = m_currentGrid;
 
                 m_currentGrid.transform.position = m_currentGridWall.GetRealPosition();
             }
         }
         else{
             m_currentGridWall = new Wall(position, GridSize);
-            if (m_allGrid[m_currentGridWall.Row, m_currentGridWall.Collumn] == null){
+            if (!m_allGrid.ContainsKey(new Vector2(m_currentGridWall.Row, m_currentGridWall.Collumn))){
                 m_currentGrid = Instantiate(grid, Vector3.zero, Quaternion.identity);
                 m_currentWalls.Add(m_currentGrid);
                 Debug.Log(m_currentWalls[0]);
                 m_currentGrid.transform.parent = wallParent;
-                m_allGrid[m_currentGridWall.Row, m_currentGridWall.Collumn] = m_currentGrid;
+                m_allGrid[new Vector2(m_currentGridWall.Row, m_currentGridWall.Collumn)] = m_currentGrid;
 
                 m_currentGrid.transform.position = m_currentGridWall.GetRealPosition();
             }
@@ -128,14 +127,13 @@ public class WallManager : MonoBehaviour
         int collumn = (int)((5f - position.y) / GridSize);
         int row = (int)((position.x + 8f) / GridSize);
 
-        if (m_allGrid[row, collumn] != null){
-            Destroy(m_allGrid[row, collumn]);
-        }
+        RemoveWall(row, collumn);
     }
 
-    void RemoveWallIndex(int row, int collumn) {
-        if (m_allGrid[row, collumn] != null){
-            Destroy(m_allGrid[row, collumn]);
+    void RemoveWall(int row, int collumn) {
+        if (m_allGrid.ContainsKey(new Vector2(row, collumn))){
+            Destroy(m_allGrid[new Vector2(row, collumn)]);
+            m_allGrid.Remove(new Vector2(row, collumn));
         }
     }
 
