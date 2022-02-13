@@ -25,18 +25,24 @@ public class AgentController : MonoBehaviour
     
     [SerializeField] GameObject EndAnimation;
 
+    SpriteRenderer m_spriteRenderer;
+
     // Start is called before the first frame update
     void Start(){
         m_animator = GetComponentInChildren<Animator>();
         m_rb = GetComponent<Rigidbody2D>();
         m_collider = GetComponent<CircleCollider2D>();
+        m_spriteRenderer = GetComponentInChildren<SpriteRenderer>();
     }
 
     // Update is called once per frame
     void Update()
     {
         m_animator.SetBool("Stopped", false);
-
+        if(m_rb.velocity.x < 0)
+            m_spriteRenderer.flipX = true;
+        else
+            m_spriteRenderer.flipX = false;
         if (m_timer > 0){
             m_timer -= Time.deltaTime;
             return;
