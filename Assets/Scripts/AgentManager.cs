@@ -56,12 +56,10 @@ public class AgentManager : MonoBehaviour
 
     public void EndGame(Transform a1, Transform a2){
         foreach (Transform t in m_agents){
-            if(!ReferenceEquals(t,a1) && !ReferenceEquals(t, a2)){
-                t.gameObject.GetComponent<AgentController>().enabled = false;
-                t.gameObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
-                t.gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-                t.gameObject.GetComponentInChildren<Animator>().SetBool("Stopped", true);
-            }
+            t.gameObject.GetComponent<AgentController>().enabled = false;
+            t.gameObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
+            t.gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+            t.gameObject.GetComponentInChildren<Animator>().SetBool("Stopped", true);
         }
 
         CameraExpand.enabled = false;
