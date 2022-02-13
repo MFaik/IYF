@@ -12,7 +12,7 @@ public class AgentManager : MonoBehaviour
         get
         {
             if (instance == null)
-                instance = GameObject.FindGameObjectWithTag("agentManager").GetComponent<AgentManager>();
+                instance = FindObjectOfType(typeof(AgentManager)) as AgentManager;
 
             return instance;
         }

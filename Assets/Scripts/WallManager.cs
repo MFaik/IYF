@@ -4,10 +4,24 @@ using UnityEngine;
 
 public class WallManager : MonoBehaviour
 {
+    private WallManager() { }
+    private static WallManager instance = null;
+    public static WallManager Instance
+    {
+        get
+        {
+            if (instance == null)
+                instance = FindObjectOfType(typeof(WallManager)) as WallManager;
+
+            return instance;
+        }
+    }
+
     Camera m_camera;
 
     [SerializeField] float GridSize;
 
+    [SerializeField] MouseChecker mouseChecker;
     [SerializeField] GameObject grid;
     [SerializeField] Transform wallParent;
     [SerializeField] int MaxWallNumber;
@@ -70,11 +84,14 @@ public class WallManager : MonoBehaviour
 
     void Update() {
         if (Input.GetMouseButton(0)){
-            SpawnWall(m_camera.ScreenToWorldPoint(Input.mousePosition));
+            mouseChecker.transform.position = m_camera.ScreenToWorldPoint(Input.mousePosition);
+            if(!mouseChecker.CheckForAgent())
+                SpawnWall(m_camera.ScreenToWorldPoint(Input.mousePosition));
         }
-        if (Input.GetMouseButtonUp(0)){
+        /*if (Input.GetMouseButtonUp(0)){
             Reset();
         }
+        */
     }
 
     void SpawnWall(Vector2 position) {
