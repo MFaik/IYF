@@ -52,15 +52,7 @@ MonoBehaviour:
   m_agents: []
   Walls: []
   Acceleration: 2
-  WanderingSpeed: 0.2
-  StartWaitTime: 0.05
-  MoveStop: {fileID: 2343700016836980775, guid: d51ce1f80914a8b4381f9dbca826234b, type: 3}
-  MinX: -7.5
-  MinY: -3.5
-  MaxX: 7.5
-  MaxY: 3.5
-  m_moveStop: {fileID: 0}
-  is_wandering: 0
+  MaxSpeed: 0.2
 --- !u!50 &5067739300973577239
 Rigidbody2D:
   serializedVersion: 4

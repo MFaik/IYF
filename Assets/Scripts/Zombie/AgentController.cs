@@ -18,39 +18,17 @@ public class AgentController : MonoBehaviour
 
     [SerializeField] GameObject[] Walls;
     [SerializeField] float Acceleration;
-    [SerializeField] float WanderingSpeed;
-    [SerializeField] float StartWaitTime;
-    [SerializeField] GameObject MoveStop;
-    [SerializeField] float MinX, MinY, MaxX, MaxY;
-    float m_waitTime;
-    public GameObject m_moveStop;
-    public bool is_wandering = false;
+    [SerializeField] float MaxSpeed;
 
     // Start is called before the first frame update
     void Start(){
         m_animator = GetComponentInChildren<Animator>();
         m_rb = GetComponent<Rigidbody2D>();
         m_collider = GetComponent<CircleCollider2D>();
-        m_moveStop = Instantiate(MoveStop, Vector3.zero, Quaternion.identity);
-        UpdateMoveStop();
     }
 
     // Update is called once per frame
     void Update(){
-        if (is_wandering){
-            if (m_rb.velocity.magnitude < WanderingSpeed)
-                m_rb.velocity = (m_moveStop.transform.position - transform.position).normalized * Acceleration;
-
-            if (Vector2.Distance(transform.position, m_moveStop.transform.position) < 1f){
-                if(m_waitTime <= 0){
-                    m_rb.velocity = Vector2.zero;
-                    UpdateMoveStop();
-                } else{
-                    m_waitTime -= Time.deltaTime;
-                }
-            }
-        }
-
         if(m_timer > 0){
             m_timer -= Time.deltaTime;
             return;
@@ -64,10 +42,10 @@ public class AgentController : MonoBehaviour
             m_animator.SetBool("Stopped", false);
             m_animator.SetTrigger("StopCrying");
             m_rb.velocity = ((m_target.position - transform.position).normalized * Speed);
-            is_wandering = false;
         } else {
             m_target = null;
-            is_wandering = true;
+            if (m_rb.velocity.magnitude < MaxSpeed)
+                m_rb.velocity = GetRandomVector3().normalized * Acceleration;
         }
     }
 
@@ -100,8 +78,7 @@ public class AgentController : MonoBehaviour
         return temp && temp.transform.CompareTag("Agent");
     }
 
-    public void UpdateMoveStop() {
-        m_moveStop.transform.position = new Vector2(Random.Range(MinX, MaxX), Random.Range(MinY, MaxY));
-        m_waitTime = StartWaitTime;
+    Vector3 GetRandomVector3() {
+        return Quaternion.Euler(0, 0, Random.Range(0, 360)) * new Vector2(1, 0);
     }
 }
