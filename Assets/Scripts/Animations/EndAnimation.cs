@@ -24,8 +24,8 @@ public class EndAnimation : MonoBehaviour
         m_restartButtonColor.a = 1;
 
         RestartText.alpha = 0;
-        Invoke(nameof(StartEndAnimation),1f);
-
+        
+        StartEndAnimation();
     }
 
     void StartEndAnimation(){
