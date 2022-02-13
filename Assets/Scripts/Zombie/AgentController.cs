@@ -106,6 +106,7 @@ public class AgentController : MonoBehaviour
             if(AgentManager.Instance.IsFinished) return;
             Instantiate(EndAnimation, transform.position, Quaternion.identity);
             AgentManager.Instance.IsFinished = true;
+            AgentManager.Instance.EndGame(transform, other.transform);
         }
     }
 }

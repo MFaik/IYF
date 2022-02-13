@@ -926,6 +926,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_agents: []
+  CameraExpand: {fileID: 2050003180}
   m_spawnerPrefab: {fileID: 5322581187422539776, guid: a1400434220a8424cbc5eec541a48bb8, type: 3}
   m_agentParent: {fileID: 463729268}
   IsFinished: 0
