@@ -34,6 +34,8 @@ public class WallManager : MonoBehaviour
     public List<GameObject> m_currentWalls;
     //Queue<Vector2> m_wallPositions = new Queue<Vector2>();
 
+    [SerializeField] GameObject DestroyOnClick;
+
     public class Wall
     {
         public float X { get; set; }
@@ -88,8 +90,11 @@ public class WallManager : MonoBehaviour
             Rect rect = new Rect(wallExpand.Size/-2f, wallExpand.Size);
             if (!rect.Contains(mouseChecker.transform.position)) return;
 
-            if(!mouseChecker.CheckForAgent())
+            if(!mouseChecker.CheckForAgent()){
+                if(DestroyOnClick)
+                    Destroy(DestroyOnClick);
                 SpawnWall(m_camera.ScreenToWorldPoint(Input.mousePosition));
+            }
         }
     }
 

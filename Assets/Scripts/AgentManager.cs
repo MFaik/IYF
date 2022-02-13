@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class AgentManager : MonoBehaviour
 {
-    [SerializeField] RuntimeAnimatorController m_maleController;
     [SerializeField] List<Transform> m_agents;
     [SerializeField] CameraExpand CameraExpand;
     [SerializeField] GameObject m_spawnerPrefab;
@@ -40,13 +39,12 @@ public class AgentManager : MonoBehaviour
         do {
             RaycastHit2D raycastHit;
             do{
-            pos = new Vector2(Random.Range(hx, -hx), Random.Range(hy, -hy));
-            raycastHit = Physics2D.BoxCast(pos,new Vector2(2,2),0,Vector2.zero);
+                pos = new Vector2(Random.Range(hx, -hx), Random.Range(hy, -hy));
+                raycastHit = Physics2D.BoxCast(pos,new Vector2(2,2),0,Vector2.zero);
             }while(raycastHit);
         } while (WallManager.Instance.CheckForWall(pos));
         
         GameObject agent = Instantiate(m_spawnerPrefab, pos, Quaternion.identity);
-        agent.transform.GetChild(0).GetChild(0).GetComponent<Animator>().runtimeAnimatorController = m_maleController;
     }
 
     public void OnAgentSpawn(Transform spawner, Transform agent)

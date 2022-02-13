@@ -48,6 +48,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Speed: 1
+  AnimationControllers:
+  - {fileID: 9100000, guid: 3e029d4c39d1cba4482d2495159a7198, type: 2}
+  - {fileID: 9100000, guid: 70d932f107955ba4cb0ae408c83c2a1c, type: 2}
   ActionTime: 1
   m_agents: []
   Walls: []

@@ -6,6 +6,7 @@ using UnityEngine.AI;
 public class AgentController : MonoBehaviour
 {
     public float Speed = 1f;
+    [SerializeField] RuntimeAnimatorController[] AnimationControllers;
 
     [SerializeField] float ActionTime = 3f; 
     float m_timer = 0;
@@ -28,11 +29,14 @@ public class AgentController : MonoBehaviour
     SpriteRenderer m_spriteRenderer;
 
     // Start is called before the first frame update
-    void Start(){
+    void Awake(){
         m_animator = GetComponentInChildren<Animator>();
+        m_animator.runtimeAnimatorController = AnimationControllers[Random.Range(0,AnimationControllers.Length)];
+
+
         m_rb = GetComponent<Rigidbody2D>();
         m_collider = GetComponent<CircleCollider2D>();
-        m_spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        m_spriteRenderer = GetComponentInChildren<SpriteRenderer>();        
     }
 
     // Update is called once per frame
