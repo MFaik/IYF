@@ -98,7 +98,6 @@ public class AgentController : MonoBehaviour
 
         raycasts.Sort(delegate (RaycastHit2D t1, RaycastHit2D t2) { return t1.distance.CompareTo(t2.distance); });
 
-        Debug.Log(transform.name + " Hit " + raycasts[0].collider.transform.name);
         return raycasts[0].collider.transform;
     }
 
