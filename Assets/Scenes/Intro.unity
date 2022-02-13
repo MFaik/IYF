@@ -5270,8 +5270,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\"Sevgililer G\xFCn\xFC\""
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: b50c68be4d486fc478f8eecb31af373e, type: 2}
-  m_sharedMaterial: {fileID: 1197845212587739047, guid: b50c68be4d486fc478f8eecb31af373e, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 27457430ceb141943b997f2adce47bf2, type: 2}
+  m_sharedMaterial: {fileID: 4160797965448499814, guid: 27457430ceb141943b997f2adce47bf2, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -5301,7 +5301,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 2
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 256
   m_textAlignment: 65535
@@ -5375,12 +5375,12 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Yine gelmi\u015Fti bu lanet g\xFCn.\nHerkes etrafta sevgilileriyle dola\u015F\u0131rken
-    ben burda oturup oyun yap\u0131yorum.\n\nAma bug\xFCn i\xE7in bir plan\u0131m
-    var\n\n<b><color=red>Art\u0131k intikam vakti</b>"
+  m_text: "Yine gelmisti bu lanet g\xFCn.\nHerkes etrafta sevgilileriyle dolasirken
+    ben burda oturup oyun yapiyorum.\n\nAma bug\xFCn i\xE7in bir planim var\n\n<b><color=red>Artik
+    intikam vakti</b>"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 27457430ceb141943b997f2adce47bf2, type: 2}
+  m_sharedMaterial: {fileID: 4160797965448499814, guid: 27457430ceb141943b997f2adce47bf2, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

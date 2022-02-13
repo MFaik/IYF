@@ -37,10 +37,13 @@ public class AgentManager : MonoBehaviour
     public void SpawnNewAgent(float hx, float hy){
         Vector2 pos;
         do {
+            RaycastHit2D raycastHit;
+            do{
             pos = new Vector2(Random.Range(hx, -hx), Random.Range(hy, -hy));
+            raycastHit = Physics2D.BoxCast(pos,new Vector2(2,2),0,Vector2.zero);
+            }while(raycastHit);
         } while (WallManager.Instance.CheckForWall(pos));
         
-
         GameObject agent = Instantiate(m_spawnerPrefab, pos, Quaternion.identity);
     }
 
