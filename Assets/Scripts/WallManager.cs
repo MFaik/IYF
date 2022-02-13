@@ -24,7 +24,7 @@ public class WallManager : MonoBehaviour
     [SerializeField] MouseChecker mouseChecker;
     [SerializeField] GameObject grid;
     [SerializeField] Transform wallParent;
-    [SerializeField] int MaxWallNumber;
+    public int MaxWallNumber;
 
     GameObject m_currentGrid;
     Wall m_currentGridWall;

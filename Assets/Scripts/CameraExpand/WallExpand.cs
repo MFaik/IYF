@@ -32,6 +32,8 @@ public class WallExpand : MonoBehaviour
         float hx = x/2, hy = y/2;
         Size = new Vector2(x, y);
 
+        WallManager.Instance.MaxWallNumber += (int)y;
+
         if (animate){
             Sequence DOTweenSequence = DOTween.Sequence();
 

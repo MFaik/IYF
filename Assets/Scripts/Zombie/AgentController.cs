@@ -83,7 +83,7 @@ public class AgentController : MonoBehaviour
     Transform ScanForTarget(){
         List<RaycastHit2D> raycasts = new List<RaycastHit2D>();
         foreach (Transform agent in m_agents){
-            RaycastHit2D temp = Physics2D.Raycast(transform.position + (agent.position - transform.position).normalized * m_collider.bounds.size.magnitude, agent.position - transform.position);
+            RaycastHit2D temp = Physics2D.Raycast(transform.position + (agent.position - transform.position).normalized * m_collider.bounds.size.magnitude/2f, agent.position - transform.position);
             Debug.DrawRay(transform.position + (agent.position - transform.position).normalized * m_collider.bounds.size.magnitude, agent.position - transform.position,Color.red,1f);
             if(temp && temp.collider.gameObject.CompareTag("Agent"))
                 raycasts.Add(temp);
