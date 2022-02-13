@@ -53,6 +53,7 @@ MonoBehaviour:
   Walls: []
   Acceleration: 2
   MaxSpeed: 0.2
+  EndAnimation: {fileID: 6360233454579573195, guid: 77270d70219f4d84abcb3ae6ccaaea92, type: 3}
 --- !u!50 &5067739300973577239
 Rigidbody2D:
   serializedVersion: 4

@@ -19,6 +19,8 @@ public class AgentController : MonoBehaviour
     [SerializeField] GameObject[] Walls;
     [SerializeField] float Acceleration;
     [SerializeField] float MaxSpeed;
+    
+    [SerializeField] GameObject EndAnimation;
 
     // Start is called before the first frame update
     void Start(){
@@ -80,5 +82,13 @@ public class AgentController : MonoBehaviour
 
     Vector3 GetRandomVector3() {
         return Quaternion.Euler(0, 0, Random.Range(0, 360)) * new Vector2(1, 0);
+    }
+
+    void OnCollisionEnter2D(Collision2D other) {
+        if (other.gameObject.CompareTag("Agent")){
+            if(AgentManager.Instance.IsFinished) return;
+            Instantiate(EndAnimation, transform.position, Quaternion.identity);
+            AgentManager.Instance.IsFinished = true;
+        }
     }
 }

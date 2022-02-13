@@ -9,6 +9,7 @@ public class AgentManager : MonoBehaviour
     [SerializeField] Transform m_agentParent;
     private AgentManager() { }
     private static AgentManager instance = null;
+    public bool IsFinished = false;
     public static AgentManager Instance{
         get
         {
