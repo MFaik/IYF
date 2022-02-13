@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class AgentManager : MonoBehaviour
 {
+    [SerializeField] RuntimeAnimatorController m_maleController;
     [SerializeField] List<Transform> m_agents;
     [SerializeField] CameraExpand CameraExpand;
     [SerializeField] GameObject m_spawnerPrefab;
@@ -45,6 +46,7 @@ public class AgentManager : MonoBehaviour
         } while (WallManager.Instance.CheckForWall(pos));
         
         GameObject agent = Instantiate(m_spawnerPrefab, pos, Quaternion.identity);
+        agent.transform.GetChild(0).GetChild(0).GetComponent<Animator>().runtimeAnimatorController = m_maleController;
     }
 
     public void OnAgentSpawn(Transform spawner, Transform agent)

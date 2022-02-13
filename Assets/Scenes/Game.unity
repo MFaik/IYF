@@ -1016,6 +1016,10 @@ PrefabInstance:
       propertyPath: m_SortingLayer
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5067739301550430317, guid: 85e3b1d3cc36f5440a445861c56f6048, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 70d932f107955ba4cb0ae408c83c2a1c, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 85e3b1d3cc36f5440a445861c56f6048, type: 3}
 --- !u!4 &824632053 stripped
@@ -1052,6 +1056,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 427563b259e90c0498ef52c87ba6e8f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_maleController: {fileID: 9100000, guid: 70d932f107955ba4cb0ae408c83c2a1c, type: 2}
   m_agents: []
   CameraExpand: {fileID: 2050003180}
   m_spawnerPrefab: {fileID: 5322581187422539776, guid: a1400434220a8424cbc5eec541a48bb8, type: 3}

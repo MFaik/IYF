@@ -1,22 +1,40 @@
 fileFormatVersion: 2
-guid: 171c94433960be6478da375a24c5e8cd
+guid: a177bba30ee5335438312fb311a52c48
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5244872824684517943
-    second: fostFall_0
+      213: -4293623909386979588
+    second: fostFlip_0
   - first:
-      213: -4366769126382791829
-    second: fostFall_1
+      213: -6528920369891479588
+    second: fostFlip_1
   - first:
-      213: -4513305503694245109
-    second: fostFall_2
+      213: 3673951311351126186
+    second: fostFlip_2
   - first:
-      213: -4001688215004979349
-    second: fostFall_3
+      213: -8157156342171070220
+    second: fostFlip_3
   - first:
-      213: 5833152174727148063
-    second: fostFall_4
+      213: -8713487687232756129
+    second: fostFlip_4
+  - first:
+      213: -5089855914670017448
+    second: fostFlip_5
+  - first:
+      213: 8261254848556216600
+    second: fostFlip_6
+  - first:
+      213: 6298624207058434453
+    second: fostFlip_7
+  - first:
+      213: 693614810063200169
+    second: fostFlip_8
+  - first:
+      213: -8960665411965625361
+    second: fostFlip_9
+  - first:
+      213: 1458379692591307618
+    second: fostFlip_10
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -83,7 +101,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -95,7 +113,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -107,7 +125,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -119,7 +137,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -131,7 +149,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -142,7 +160,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: fostFall_0
+      name: fostFlip_0
       rect:
         serializedVersion: 2
         x: 0
@@ -156,14 +174,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9c5649854f77637b0800000000000000
-      internalID: -5244872824684517943
+      spriteID: cf67dd19dcbf964c0800000000000000
+      internalID: -4293623909386979588
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: fostFall_1
+      name: fostFlip_1
       rect:
         serializedVersion: 2
         x: 32
@@ -177,14 +195,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b639fcd9d9e1663c0800000000000000
-      internalID: -4366769126382791829
+      spriteID: cdf6ec9e38d9465a0800000000000000
+      internalID: -6528920369891479588
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: fostFall_2
+      name: fostFlip_2
       rect:
         serializedVersion: 2
         x: 64
@@ -198,14 +216,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b033d719e848d51c0800000000000000
-      internalID: -4513305503694245109
+      spriteID: aa81a23904f7cf230800000000000000
+      internalID: 3673951311351126186
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: fostFall_3
+      name: fostFlip_3
       rect:
         serializedVersion: 2
         x: 96
@@ -219,14 +237,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b6fd2c235c52778c0800000000000000
-      internalID: -4001688215004979349
+      spriteID: 4f091977685fbce80800000000000000
+      internalID: -8157156342171070220
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: fostFall_4
+      name: fostFlip_4
       rect:
         serializedVersion: 2
         x: 128
@@ -240,8 +258,134 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f12b86f5ff483f050800000000000000
-      internalID: 5833152174727148063
+      spriteID: f5660cf4d19731780800000000000000
+      internalID: -8713487687232756129
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fostFlip_5
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8543c2843033d59b0800000000000000
+      internalID: -5089855914670017448
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fostFlip_6
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 811ba27c38fd5a270800000000000000
+      internalID: 8261254848556216600
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fostFlip_7
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 599f4634855396750800000000000000
+      internalID: 6298624207058434453
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fostFlip_8
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9af54ccaef630a900800000000000000
+      internalID: 693614810063200169
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fostFlip_9
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: febd8a0984255a380800000000000000
+      internalID: -8960665411965625361
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fostFlip_10
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 26b5c848a943d3410800000000000000
+      internalID: 1458379692591307618
       vertices: []
       indices: 
       edges: []
