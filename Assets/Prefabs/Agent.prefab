@@ -27,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5067739300973577234}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.96, y: -0.007, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 5067739301550430318}
@@ -49,6 +49,16 @@ MonoBehaviour:
   Speed: 1
   ActionTime: 3
   m_agents: []
+  Walls: []
+  Acceleration: 200
+  WanderingSpeed: 20
+  StartWaitTime: 0.05
+  MoveStop: {fileID: 2343700016836980775, guid: d51ce1f80914a8b4381f9dbca826234b, type: 3}
+  MinX: -7.5
+  MinY: -3.5
+  MaxX: 7.5
+  MaxY: 3.5
+  m_moveStop: {fileID: 0}
 --- !u!50 &5067739300973577239
 Rigidbody2D:
   serializedVersion: 4

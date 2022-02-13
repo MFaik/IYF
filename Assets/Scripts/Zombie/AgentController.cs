@@ -16,15 +16,41 @@ public class AgentController : MonoBehaviour
     Rigidbody2D m_rb;
     [SerializeField] List<Transform> m_agents;
 
+    [SerializeField] GameObject[] Walls;
+    [SerializeField] float Acceleration;
+    [SerializeField] float WanderingSpeed;
+    [SerializeField] float StartWaitTime;
+    [SerializeField] GameObject MoveStop;
+    [SerializeField] float MinX, MinY, MaxX, MaxY;
+    float m_waitTime;
+    public GameObject m_moveStop;
+    public bool is_wandering = false;
+
     // Start is called before the first frame update
     void Start(){
         m_animator = GetComponentInChildren<Animator>();
         m_rb = GetComponent<Rigidbody2D>();
         m_collider = GetComponent<CircleCollider2D>();
+        m_moveStop = Instantiate(MoveStop, Vector3.zero, Quaternion.identity);
+        UpdateMoveStop();
     }
 
     // Update is called once per frame
     void Update(){
+        if (is_wandering){
+            if (m_rb.velocity.magnitude < WanderingSpeed)
+                m_rb.AddForce((m_moveStop.transform.position - transform.position) * Acceleration * Time.deltaTime);
+
+            if (Vector2.Distance(transform.position, m_moveStop.transform.position) < 1f){
+                if(m_waitTime <= 0){
+                    m_rb.velocity = Vector2.zero;
+                    UpdateMoveStop();
+                } else{
+                    m_waitTime -= Time.deltaTime;
+                }
+            }
+        }
+
         if(m_timer > 0){
             m_timer -= Time.deltaTime;
             return;
@@ -38,13 +64,10 @@ public class AgentController : MonoBehaviour
             m_animator.SetBool("Stopped", false);
             m_animator.SetTrigger("StopCrying");
             m_rb.velocity = ((m_target.position - transform.position).normalized * Speed);
+            is_wandering = false;
         } else {
             m_target = null;
-            //wandering
-            m_rb.velocity = Vector2.zero;
-
-            m_animator.SetBool("Stopped", true);
-            m_animator.SetTrigger("StartCrying");
+            is_wandering = true;
         }
     }
 
@@ -77,4 +100,8 @@ public class AgentController : MonoBehaviour
         return temp && temp.transform.CompareTag("Agent");
     }
 
+    public void UpdateMoveStop() {
+        m_moveStop.transform.position = new Vector2(Random.Range(MinX, MaxX), Random.Range(MinY, MaxY));
+        m_waitTime = StartWaitTime;
+    }
 }

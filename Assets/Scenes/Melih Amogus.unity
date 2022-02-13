@@ -142,7 +142,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!50 &25222214
 Rigidbody2D:
   serializedVersion: 4
@@ -300,9 +300,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GridSize: 0.5
+  mouseChecker: {fileID: 0}
   grid: {fileID: 4958460692508787682, guid: c9b7d663836503e4795267e9454e5ede, type: 3}
   wallParent: {fileID: 2124743479}
   MaxWallNumber: 20
+  m_currentWalls: []
 --- !u!4 &390347382
 Transform:
   m_ObjectHideFlags: 0
