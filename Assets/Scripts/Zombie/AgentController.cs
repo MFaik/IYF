@@ -35,6 +35,8 @@ public class AgentController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        m_animator.SetBool("Stopped", false);
+
         if (m_timer > 0){
             m_timer -= Time.deltaTime;
             return;
