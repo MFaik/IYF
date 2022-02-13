@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using TMPro;
 using DG.Tweening;
 
@@ -47,6 +48,6 @@ public class Intro : MonoBehaviour
     }
 
     void NextScene() {
-
+        SceneManager.LoadScene(2);
     }
 }
