@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 5322581187422539805}
   - component: {fileID: 5322581187422539807}
   - component: {fileID: 5322581187422539806}
+  - component: {fileID: 687907148158278928}
   m_Layer: 0
   m_Name: AgentSpawner
-  m_TagString: Untagged
+  m_TagString: Agent
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -117,6 +118,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   agent: {fileID: 1119603454087218030}
+--- !u!61 &687907148158278928
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5322581187422539776}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.000000059604645, y: -0.23977223}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 2, y: 3}
+    newSize: {x: 2, y: 3}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.9210254, y: 0.65023285}
+  m_EdgeRadius: 0
 --- !u!1001 &5322581186457519999
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -134,7 +161,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5067739300973577233, guid: 85e3b1d3cc36f5440a445861c56f6048, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.28
+      value: -0.18
       objectReference: {fileID: 0}
     - target: {fileID: 5067739300973577233, guid: 85e3b1d3cc36f5440a445861c56f6048, type: 3}
       propertyPath: m_LocalPosition.z
