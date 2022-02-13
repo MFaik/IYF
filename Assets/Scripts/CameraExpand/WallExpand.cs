@@ -10,6 +10,7 @@ public class WallExpand : MonoBehaviour
     [SerializeField] AgentManager agentManager;
     SpriteRenderer[] m_wallRenderers;
     EdgeCollider2D m_edgeCollider;
+    public Vector2 Size;
     
     void Awake() {
         m_edgeCollider = GetComponent<EdgeCollider2D>();
@@ -27,8 +28,9 @@ public class WallExpand : MonoBehaviour
 
     public void UpdateSize(float x,float y, bool animate = true){
         float hx = x/2, hy = y/2;
+        Size = new Vector2(x, y);
 
-        if(animate){
+        if (animate){
             Sequence DOTweenSequence = DOTween.Sequence();
 
             DOTweenSequence.Join(Walls[0].DOMoveY(hy+.5f,.3f));
@@ -62,6 +64,7 @@ public class WallExpand : MonoBehaviour
             new Vector2(-hx,hy),
             new Vector2(hx,hy),
         });
+
         
     }
 

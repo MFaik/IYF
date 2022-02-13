@@ -20,7 +20,7 @@ public class WallManager : MonoBehaviour
     Camera m_camera;
 
     [SerializeField] float GridSize;
-
+    [SerializeField] WallExpand wallExpand;
     [SerializeField] MouseChecker mouseChecker;
     [SerializeField] GameObject grid;
     [SerializeField] Transform wallParent;
@@ -84,6 +84,10 @@ public class WallManager : MonoBehaviour
     void Update() {
         if (Input.GetMouseButton(0)){
             mouseChecker.transform.position = m_camera.ScreenToWorldPoint(Input.mousePosition);
+
+            Rect rect = new Rect(wallExpand.Size/-2f, wallExpand.Size);
+            if (!rect.Contains(mouseChecker.transform.position)) return;
+
             if(!mouseChecker.CheckForAgent())
                 SpawnWall(m_camera.ScreenToWorldPoint(Input.mousePosition));
         }
@@ -100,7 +104,7 @@ public class WallManager : MonoBehaviour
         if (!m_allGrid.ContainsKey(new Vector2(m_currentGridWall.Row, m_currentGridWall.Collumn))){
             m_currentGrid = Instantiate(grid, Vector3.zero, Quaternion.identity);
             m_currentWalls.Add(m_currentGrid);
-            Debug.Log(m_currentWalls[0]);
+
             m_currentGrid.transform.parent = wallParent;
             m_allGrid[new Vector2(m_currentGridWall.Row, m_currentGridWall.Collumn)] = m_currentGrid;
 
@@ -120,5 +124,11 @@ public class WallManager : MonoBehaviour
             Destroy(m_allGrid[new Vector2(row, collumn)]);
             m_allGrid.Remove(new Vector2(row, collumn));
         }
+    }
+
+    public bool CheckForWall(Vector2 position){
+        Wall m_currentGridWall = new Wall(position, GridSize);
+
+        return m_allGrid.ContainsKey(new Vector2(m_currentGridWall.Row, m_currentGridWall.Collumn));
     }
 }

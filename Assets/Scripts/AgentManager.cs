@@ -5,7 +5,6 @@ using UnityEngine;
 public class AgentManager : MonoBehaviour
 {
     [SerializeField] List<Transform> m_agents;
-    [SerializeField] GameObject m_agentPrefab;
     [SerializeField] GameObject m_spawnerPrefab;
     [SerializeField] Transform m_agentParent;
     private AgentManager() { }
@@ -34,7 +33,11 @@ public class AgentManager : MonoBehaviour
         }
     }
     public void SpawnNewAgent(float hx, float hy){
-        Vector2 pos = new Vector2 (Random.Range(hx, -hx), Random.Range(hy,-hy));
+        Vector2 pos;
+        do {
+            pos = new Vector2(Random.Range(hx, -hx), Random.Range(hy, -hy));
+        } while (WallManager.Instance.CheckForWall(pos));
+        
 
         GameObject agent = Instantiate(m_spawnerPrefab, pos, Quaternion.identity);
     }
@@ -44,6 +47,7 @@ public class AgentManager : MonoBehaviour
         agent.parent = m_agentParent;
         agent.tag = "Agent";
         agent.GetComponent<AgentController>().enabled = true;
+        agent.GetComponent<CircleCollider2D>().enabled = true;
         Destroy(spawner.gameObject);
         UpdateAgents();
     }

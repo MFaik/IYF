@@ -322,7 +322,7 @@ Transform:
   m_GameObject: {fileID: 632530209}
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 30, y: 20, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 944325752}
   m_RootOrder: 0
@@ -367,12 +367,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -5
-  m_Sprite: {fileID: 7482667652216324306, guid: 6ae24382f0ada9e4eafbde933b9f9b91, type: 3}
-  m_Color: {r: 0, g: 0.6603774, b: 0.10998502, a: 1}
+  m_Sprite: {fileID: 3999459212407844694, guid: e28ad92931410d04d870f1b5321df2b3, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_DrawMode: 2
+  m_Size: {x: 50, y: 30}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -589,6 +589,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GridSize: 0.5
+  wallExpand: {fileID: 1782290285}
   mouseChecker: {fileID: 973070033}
   grid: {fileID: 4958460692508787682, guid: c9b7d663836503e4795267e9454e5ede, type: 3}
   wallParent: {fileID: 163771377}
@@ -734,6 +735,8 @@ MonoBehaviour:
   - {fileID: 1803696357}
   - {fileID: 1785987224}
   - {fileID: 315508715}
+  agentManager: {fileID: 2082785575}
+  Size: {x: 0, y: 0}
 --- !u!68 &1782290286
 EdgeCollider2D:
   m_ObjectHideFlags: 0
@@ -1048,7 +1051,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_agents: []
-  agentParent: {fileID: 999912597}
+  m_spawnerPrefab: {fileID: 5322581187422539776, guid: a1400434220a8424cbc5eec541a48bb8, type: 3}
+  m_agentParent: {fileID: 999912597}
 --- !u!4 &2082785576
 Transform:
   m_ObjectHideFlags: 0
