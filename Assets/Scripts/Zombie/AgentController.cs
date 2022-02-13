@@ -9,6 +9,9 @@ public class AgentController : MonoBehaviour
 
     [SerializeField] float ActionTime = 3f; 
     float m_timer = 0;
+    float m_wanderingCount = 0;
+    int m_cryingTime = 3;
+    bool m_crying = false;
 
     Transform m_target;
     Animator m_animator;
@@ -39,15 +42,36 @@ public class AgentController : MonoBehaviour
 
         if(m_target == null)
             m_target = ScanForTarget();
+        if (m_crying)
+        {
+            m_cryingTime--;
+            if (m_cryingTime <= 0)
+            {
+                m_crying = false;
+                m_cryingTime = 3;
+                m_animator.SetBool("Stopped", true);
+                m_animator.SetTrigger("StopCrying");
+            }
 
-        if (CheckPath(m_target)){
-            m_animator.SetBool("Stopped", false);
-            m_animator.SetTrigger("StopCrying");
+        }else if (CheckPath(m_target)){
+            m_crying = false;
+            m_cryingTime = 2;
+
             m_rb.velocity = ((m_target.position - transform.position).normalized * Speed);
-        } else {
+        } else{
             m_target = null;
-            if (m_rb.velocity.magnitude < MaxSpeed)
+            if (m_wanderingCount > 3){
+                m_crying = true;
+                m_animator.SetTrigger("StartCrying");
+                m_rb.velocity = Vector2.zero;
+                m_cryingTime = 3;
+                m_wanderingCount = 0;
+            }else if (m_rb.velocity.magnitude < MaxSpeed){
+                m_animator.SetBool("Stopped", false);
                 m_rb.velocity = GetRandomVector3().normalized * Acceleration;
+                m_wanderingCount++;
+            }
+                
         }
     }
 
