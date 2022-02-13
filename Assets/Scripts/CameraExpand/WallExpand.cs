@@ -54,7 +54,10 @@ public class WallExpand : MonoBehaviour
             DOTweenSequence.Join(Walls[3].DOMoveX(-hx-.5f,.3f));
             DOTweenSequence.Join(DOTween.To(() => m_wallRenderers[3].size, x => m_wallRenderers[3].size = x, new Vector2(1,y), .3f));
 
-            DOTweenSequence.Play().OnComplete(() => { AgentManager.SpawnNewAgent(hx, hy); });
+            DOTweenSequence.Play().OnComplete(() => { 
+                for(int i = 0;i < (int)(y/5);i++)
+                    AgentManager.SpawnNewAgent(hx, hy); 
+            });
         } else {
             Ground.size = Size;
 
