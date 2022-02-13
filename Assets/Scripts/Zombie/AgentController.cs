@@ -112,7 +112,7 @@ public class AgentController : MonoBehaviour
     void OnCollisionEnter2D(Collision2D other) {
         if (other.gameObject.CompareTag("Agent")){
             if(AgentManager.Instance.IsFinished) return;
-            Instantiate(EndAnimation, transform.position, Quaternion.identity);
+            Instantiate(EndAnimation, other.contacts[0].point, Quaternion.identity);
             AgentManager.Instance.IsFinished = true;
             AgentManager.Instance.EndGame(transform, other.transform);
         }
