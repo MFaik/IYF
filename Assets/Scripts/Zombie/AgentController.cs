@@ -56,7 +56,7 @@ public class AgentController : MonoBehaviour
         }else if (CheckPath(m_target)){
             m_crying = false;
             m_cryingTime = 2;
-
+            m_animator.SetBool("Stopped", false);
             m_rb.velocity = ((m_target.position - transform.position).normalized * Speed);
         } else{
             m_target = null;
