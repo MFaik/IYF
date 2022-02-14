@@ -9,8 +9,8 @@ public class AgentController : MonoBehaviour
 
     [SerializeField] float ActionTime = 3f; 
     float m_timer = 0;
-    float m_wanderingCount = 0;
-    int m_cryingTime = 3;
+    int m_wanderingCount = 0;
+    float m_cryingTime = 4f;
     bool m_crying = false;
 
     Transform m_target;
@@ -33,43 +33,36 @@ public class AgentController : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update(){
-        if(m_timer > 0){
+    void Update()
+    {
+        if (m_timer > 0){
             m_timer -= Time.deltaTime;
             return;
         }
         m_timer = ActionTime;
 
-        if(m_target == null)
-            m_target = ScanForTarget();
-        if (m_crying)
-        {
-            m_cryingTime--;
-            if (m_cryingTime <= 0)
-            {
-                m_crying = false;
-                m_cryingTime = 3;
-                m_animator.SetBool("Stopped", true);
-                m_animator.SetTrigger("StopCrying");
-            }
+        if (m_crying){
+            m_animator.SetTrigger("StopCrying");
+            return;
+        }
 
-        }else if (CheckPath(m_target)){
-            m_crying = false;
-            m_cryingTime = 2;
-            m_animator.SetBool("Stopped", false);
+        if (m_target == null)
+            m_target = ScanForTarget();
+
+        if (CheckPath(m_target)) {
             m_rb.velocity = ((m_target.position - transform.position).normalized * Speed);
-        } else{
+        } else {
             m_target = null;
-            if (m_wanderingCount > 3){
+
+            if(m_wanderingCount == 6){
                 m_crying = true;
                 m_animator.SetTrigger("StartCrying");
-                m_rb.velocity = Vector2.zero;
-                m_cryingTime = 3;
+                m_timer = m_cryingTime;
                 m_wanderingCount = 0;
-            }else if (m_rb.velocity.magnitude < MaxSpeed){
-                m_animator.SetBool("Stopped", false);
-                m_rb.velocity = GetRandomVector3().normalized * Acceleration;
+            } else if (m_rb.velocity.magnitude < MaxSpeed){
                 m_wanderingCount++;
+
+                m_rb.velocity = GetRandomVector3().normalized * Acceleration;
             }
                 
         }
