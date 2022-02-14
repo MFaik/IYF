@@ -99,7 +99,7 @@ public class WallManager : MonoBehaviour
             Destroy(m_currentWalls[0]);
             m_currentWalls.RemoveAt(0);
         }
-            
+
         m_currentGridWall = new Wall(position, GridSize);
         if (!m_allGrid.ContainsKey(new Vector2(m_currentGridWall.Row, m_currentGridWall.Collumn))){
             m_currentGrid = Instantiate(grid, Vector3.zero, Quaternion.identity);
@@ -121,7 +121,7 @@ public class WallManager : MonoBehaviour
 
     void RemoveWallFromDict(int row, int collumn) {
         if (m_allGrid.ContainsKey(new Vector2(row, collumn))){
-            Destroy(m_allGrid[new Vector2(row, collumn)]);
+            //Destroy(m_allGrid[new Vector2(row, collumn)]);
             m_allGrid.Remove(new Vector2(row, collumn));
         }
     }
