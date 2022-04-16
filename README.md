@@ -1,6 +1,6 @@
 # IYF
 
-Frost Game Jam 4
+The game that we made for Frost Game Jam 4
 
 Eren yatılı
 
