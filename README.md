@@ -1,13 +1,5 @@
 # IYF
 
-The game that we made for Frost Game Jam 4
+Sevenleri Ayır Made in 48 hours for Frost Game Jam 4
 
-Eren yatılı
-
-Melih Amogus
-
-Faik Cringe
-
-Ömer Artist
-
-Efe Tüccar
+[mfaik.itch.io/sevenleri-ayir](https://mfaik.itch.io/sevenleri-ayir)
